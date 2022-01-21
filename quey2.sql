@@ -1,0 +1,1 @@
+select id from tab where name='abhiram'

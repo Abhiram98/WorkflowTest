@@ -32,6 +32,7 @@ jobs:
       - name: Check sql files
         run: |
           echo "blahblahbalh"
+
           git --version
           echo Checking the branch
           git branch -a
