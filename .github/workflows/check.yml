@@ -25,6 +25,11 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
+      - name: Set up Python 3.8.2
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.8.2"
+
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: echo Hello, world!
@@ -35,3 +40,5 @@ jobs:
           echo Add other actions to build,
           echo test, and deploy your project.
           echo this will not fail.
+          FILES_CHANGED=`git --no-pager diff --name-only $(git log --format="%H" -n 1) $(git merge-base FETCH_HEAD main)`
+          python ".github/workflows/test_sql_files.py" $FILES_CHANGED

@@ -1,3 +1,3 @@
 # WorkflowTest
 
-Testing github worflows.
+Testing github workflows. Pass checks before making a commit.
