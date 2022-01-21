@@ -31,6 +31,8 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Check sql files
         run: |
+          echo "blahblahbalh"
+
           git --version
           echo Checking the branch
           git branch -a
