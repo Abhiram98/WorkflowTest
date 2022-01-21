@@ -33,11 +33,13 @@ jobs:
         run: |
           echo Checking the branch
           git branch
+          echo "--"
           echo "Present wd"
           pwd
+          echo "--"
           LATEST_COMMIT=`git log --format="%H" -n 1`
-          BASE_COMMIT=`git merge-base FETCH_HEAD main`
           echo "Latest commit - $LATEST_COMMIT"
+          BASE_COMMIT=`git merge-base FETCH_HEAD main`          
           echo "Base commit - $BASE_COMMIT"
           FILES_CHANGED=`git --no-pager diff --name-only $(LATEST_COMMIT) $(BASE_COMMIT)`
           python ".github/workflows/test_sql_files.py" $FILES_CHANGED
