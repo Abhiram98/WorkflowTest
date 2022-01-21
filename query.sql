@@ -1,1 +1,1 @@
-select * from table_name;
+select * from new_table where something something;
