@@ -31,15 +31,17 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Check sql files
         run: |
+          echo "blahblahbalh"
+          git --version
           echo Checking the branch
-          git branch
+          git branch -a
           echo "--"
           echo "Present wd"
           pwd
           echo "--"
           LATEST_COMMIT=`git log --format="%H" -n 1`
           echo "Latest commit - $LATEST_COMMIT"
-          BASE_COMMIT=`git merge-base FETCH_HEAD main`          
+          BASE_COMMIT=`git merge-base FETCH_HEAD remotes/origin/main`
           echo "Base commit - $BASE_COMMIT"
           FILES_CHANGED=`git --no-pager diff --name-only $(LATEST_COMMIT) $(BASE_COMMIT)`
           python ".github/workflows/test_sql_files.py" $FILES_CHANGED
