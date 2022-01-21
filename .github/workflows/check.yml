@@ -32,7 +32,7 @@ jobs:
       - name: Check sql files
         run: |
           echo Checking the branch
-          git branch
+          git branch -a
           echo "--"
           echo "Present wd"
           pwd
