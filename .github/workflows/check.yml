@@ -35,3 +35,5 @@ jobs:
           echo Add other actions to build,
           echo test, and deploy your project.
           echo this will not fail.
+          FILES_CHANGED=`git --no-pager diff --name-only $(git log --format="%H" -n 1) $(git merge-base FETCH_HEAD main)`
+          python3 ".github/workflows/test_sql_files.py" $FILES_CHANGED
