@@ -31,14 +31,16 @@ jobs:
         run: |
           echo "::set-output name=all::$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | xargs)"
           echo "::set-output name=ts::$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | grep .ts$ | xargs)"
-          git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | xargs
+          git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | xargs >> files_changed.txt
+          cat files_changed.txt
+      
+      - name: Set up Python 3.8.2
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.8.2"
 
-  chng-sql-files:
-    runs-on: ubuntu-latest
-    # require the first job to have ran
-    needs: changedfiles
-    # only run there are changed files
-#     if: ${{needs.changedfiles.outputs.ts}}
-    steps:
-      - name: echo changed files
-        run: echo ${{needs.changedfiles.outputs.ts}}
+      - name: Install sqlfluff
+        run: |
+          pip install sqlfluff
+      - name: Test Syntax of Changed sql files
+        run: python3 .github/workflows/test_sql_files.py files_changed.txt

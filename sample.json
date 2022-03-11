@@ -2,5 +2,6 @@
 "key":"value"
 ,
   "a":"b",
-  "new":"key"
+  "new":"key",
+  "something":"something"
 }
