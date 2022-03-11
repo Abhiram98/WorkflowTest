@@ -31,7 +31,7 @@ jobs:
         run: |
           echo "::set-output name=all::$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | xargs)"
           echo "::set-output name=ts::$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | grep .ts$ | xargs)"
-          git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | xargs >> files_changed.txt
+          git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | grep .ts$ | xargs >> files_changed.txt
           cat files_changed.txt
       
       - name: Set up Python 3.8.2
@@ -43,4 +43,4 @@ jobs:
         run: |
           pip install sqlfluff
       - name: Test Syntax of Changed sql files
-        run: python .github/workflows/test_sql_files.py files_changed.txt
+        run: python3 .github/workflows/test_sql_files.py files_changed.txt
