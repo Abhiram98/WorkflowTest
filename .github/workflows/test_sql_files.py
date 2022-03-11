@@ -14,6 +14,7 @@ print("SQL Files changed ->", sql_files)
 failed = False
 
 for f in sql_files:
+	print("*"*30)
 	print(f"Parsing {f}")
 	with open(f) as fp:
 		query = fp.read()
