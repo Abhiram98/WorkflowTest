@@ -15,6 +15,10 @@ for f in sql_files:
 	print(f"Parsing {f}")
 	with open(f) as fp:
 		query = fp.read()
-		sqlfluff.parse(query, dialect = 'redshift')
+		try:
+			sqlfluff.parse(query, dialect = 'redshift')
+		except Excetion as e:
+			print(f"Failed to parse {f}")
+			print(f"error: {str(e)}")
 
 print("Test complete.")
