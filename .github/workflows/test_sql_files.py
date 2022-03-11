@@ -26,5 +26,5 @@ for f in sql_files:
 
 
 print("Test complete.")
-print("Failed? {failed}")
+print(f"Failed? {failed}")
 sys.exit(1)
