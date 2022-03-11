@@ -1,5 +1,5 @@
 import sys
-import sqlfulff
+import sqlfluff
 print("Testing files ->", sys.argv)
 
 file = sys.argv[1]
@@ -14,6 +14,6 @@ for f in sql_files:
 	print(f"Parsing {f}")
 	with open(f) as fp:
 		query = fp.read()
-		sqlfulff.parse(query, dialect = 'redshift')
+		sqlfluff.parse(query, dialect = 'redshift')
 
 print("Test complete.")
