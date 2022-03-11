@@ -28,4 +28,5 @@ for f in sql_files:
 
 print("Test complete.")
 print(f"Failed? {failed}")
-sys.exit(1)
+if failed:
+	sys.exit(1)
