@@ -1,1 +1,1 @@
-select * from table_name;
+select name from table_name where col = 'hello';
