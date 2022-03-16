@@ -1,1 +1,1 @@
-select * from sometable;
+select * from sometable where somemistaks here;
