@@ -29,11 +29,8 @@ jobs:
         id: changes
         # Set outputs using the command.
         run: |
-          echo "::set-output name=all::$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | xargs)"
-          echo "::set-output name=ts::$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | grep .ts$ | xargs)"
-          git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | xargs >> files_changed.txt
+          git diff-tree --no-commit-id --name-only -r ${{ github.sha }} >> files_changed.txt
           cat files_changed.txt
-          git diff-tree --no-commit-id --name-only -r ${{ github.sha }}
       
       - name: Set up Python 3.8.2
         uses: actions/setup-python@v2
